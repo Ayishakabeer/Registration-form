@@ -1,0 +1,9 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background-image: url('./assets/background.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+}
