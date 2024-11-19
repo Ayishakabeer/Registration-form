@@ -43,6 +43,7 @@ const RegistrationForm = () => {
 
     setError({});
     setShowAlert(true);
+    alert(`Data stored successfully! \nName: ${formData.name}\nAddress: ${formData.address}\nMobile: ${formData.mobile}\nEmail: ${formData.email}\nGender: ${formData.gender}\nDOB: ${formData.dob}\nCourse: ${formData.course}`);
   };
 
   const handleCancel = () => {
@@ -56,7 +57,6 @@ const RegistrationForm = () => {
       course: "",
     });
     setError({});
-    setShowAlert(false); // Hide success message on cancel
   };
 
   return (
@@ -66,28 +66,81 @@ const RegistrationForm = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
-          {["name", "address", "mobile", "email"].map((field) => (
-            <Grid item xs={12} key={field}>
-              <TextField
-                label={field.charAt(0).toUpperCase() + field.slice(1)}
-                name={field}
-                fullWidth
-                variant="standard"
-                value={formData[field]}
-                onChange={handleChange}
-                error={Boolean(error[field])}
-                helperText={error[field]}
-                required
-                sx={{
-                  "& .MuiInput-underline:before": { borderBottomColor: "grey" },
-                  "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "black" },
-                  "& .MuiInput-underline:after": { borderBottomColor: "black", borderBottomWidth: 2 },
-                }}
-                multiline={field === "address"}
-                rows={field === "address" ? 4 : 1}
-              />
-            </Grid>
-          ))}
+          <Grid item xs={12}>
+            <TextField
+              label="Name"
+              name="name"
+              fullWidth
+              variant="standard"
+              value={formData.name}
+              onChange={handleChange}
+              error={Boolean(error.name)}
+              helperText={error.name}
+              required
+              sx={{
+                "& .MuiInput-underline:before": { borderBottomColor: "grey" },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "black" },
+                "& .MuiInput-underline:after": { borderBottomColor: "black", borderBottomWidth: 2 },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Address"
+              name="address"
+              fullWidth
+              multiline
+              rows={4}
+              variant="standard"
+              value={formData.address}
+              onChange={handleChange}
+              error={Boolean(error.address)}
+              helperText={error.address}
+              required
+              sx={{
+                "& .MuiInput-underline:before": { borderBottomColor: "grey" },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "black" },
+                "& .MuiInput-underline:after": { borderBottomColor: "black", borderBottomWidth: 2 },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Mobile"
+              name="mobile"
+              fullWidth
+              variant="standard"
+              value={formData.mobile}
+              onChange={handleChange}
+              error={Boolean(error.mobile)}
+              helperText={error.mobile}
+              required
+              sx={{
+                "& .MuiInput-underline:before": { borderBottomColor: "grey" },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "black" },
+                "& .MuiInput-underline:after": { borderBottomColor: "black", borderBottomWidth: 2 },
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              fullWidth
+              variant="standard"
+              value={formData.email}
+              onChange={handleChange}
+              error={Boolean(error.email)}
+              helperText={error.email}
+              required
+              sx={{
+                "& .MuiInput-underline:before": { borderBottomColor: "grey" },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottomColor: "black" },
+                "& .MuiInput-underline:after": { borderBottomColor: "black", borderBottomWidth: 2 },
+              }}
+            />
+          </Grid>
           <Grid item xs={12}>
             <FormControl component="fieldset" fullWidth error={Boolean(error.gender)}>
               <RadioGroup row name="gender" value={formData.gender} onChange={handleChange}>
@@ -148,14 +201,6 @@ const RegistrationForm = () => {
         </Grid>
       </form>
 
-      {showAlert && (
-        <Box mt={3}>
-          <Alert severity="success">
-            <strong>Data stored successfully!</strong>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
-          </Alert>
-        </Box>
-      )}
     </Paper>
   );
 };

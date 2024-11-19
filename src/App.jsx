@@ -2,7 +2,6 @@
 
 import React from 'react';
 import RegistrationForm from './RegistrationForm';
-import Background from '../src/assets/background.jpg'
 import './App.css';
 
 function App() {
